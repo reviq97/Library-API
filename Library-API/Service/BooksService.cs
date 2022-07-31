@@ -4,16 +4,20 @@ using Library_API.Service.Interfaces;
 
 namespace Library_API.Service;
 
-public class LibraryService : ILibraryService
+public class BooksService : IBooksService
 {
     private readonly ApplicationDbContext _dbContext;
 
-    public LibraryService(ApplicationDbContext dbContext)
+    public BooksService(ApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
     }
     public IEnumerable<Book> GetAllBooks()
     {
-        return _dbContext.
+        if (_dbContext.Book.Any())
+        {
+            return _dbContext.Book.ToList();
+        }
+        return Enumerable.Empty<Book>();
     }
 }
