@@ -1,4 +1,6 @@
 using Library_API.Database;
+using Library_API.Service;
+using Library_API.Service.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("MyConnection"));
 });
+builder.Services.AddScoped<IBooksService, BooksService>();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();

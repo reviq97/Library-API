@@ -9,9 +9,9 @@ namespace Library_API.Database
         {
 
         }
-        DbSet<Customer> Customers { get; set; }
-        DbSet<Book> Book { get; set; }
-        DbSet<Address> Address { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Book> Book { get; set; }
+        public DbSet<Address> Address { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

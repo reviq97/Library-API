@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library_API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220728222758_Library_Core_Entities")]
-    partial class Library_Core_Entities
+    [Migration("20220731223713_dbmigration01082022")]
+    partial class dbmigration01082022
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
