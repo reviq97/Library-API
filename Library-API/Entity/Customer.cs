@@ -11,5 +11,11 @@ namespace Library_API.Entity
         public DateTime Birth { get; set; }
         public string PhoneNumber { get; set; }
         public long AddressId { get; set; }
+        public virtual Address Address { get; set; }
+
+        public Customer()
+        {
+
+        }
     }
 }
