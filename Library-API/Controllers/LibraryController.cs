@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Library_API.Entity;
+using Library_API.Service.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library_API.Controllers
@@ -7,11 +9,25 @@ namespace Library_API.Controllers
     [Route("[controller]")]
     public class LibraryController : Controller
     {
+        private readonly IBooksService _booksService;
+
+        public LibraryController(IBooksService booksService)
+        {
+            _booksService = booksService;
+        }
+        
         [HttpGet]
         [Route("[action]")]
-        public ActionResult GetAllBooks()
+        public ActionResult<IEnumerable<Book>> GetAllBooks()
         {
-            return Ok();
+            var booksList = _booksService.GetAllBooks();
+
+            if (!booksList.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(booksList.ToList());
         }
 
 
