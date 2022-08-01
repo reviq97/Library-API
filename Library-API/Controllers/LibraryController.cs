@@ -1,5 +1,5 @@
 ﻿using Library_API.Entity;
-using Library_API.Service.Interfaces;
+using Library_API.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
