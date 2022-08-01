@@ -22,7 +22,12 @@ namespace Library_API.Controllers
 
         public ActionResult<IEnumerable<Customer>> GetAllCustomers()
         {
-            return Ok(_customerService.GetAllCustomers());
+            return Ok(_customerService.GetAllCustomers();
+
+        }
+
+        public ActionResult<Customer> CreateCustomer([FromBody] Customer)
+        {
 
         }
     }
