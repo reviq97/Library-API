@@ -14,7 +14,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("MyConnection"));
 });
-builder.Services.AddScoped<IBookService, BooksService>();
+builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();

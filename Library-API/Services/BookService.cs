@@ -4,11 +4,11 @@ using Library_API.Services.Interfaces;
 
 namespace Library_API.Services;
 
-public class BooksService : IBookService
+public class BookService : IBookService
 {
     private readonly ApplicationDbContext _dbContext;
 
-    public BooksService(ApplicationDbContext dbContext)
+    public BookService(ApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
     }
