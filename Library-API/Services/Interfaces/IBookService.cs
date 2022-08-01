@@ -2,7 +2,7 @@
 
 namespace Library_API.Services.Interfaces;
 
-public interface IBooksService
+public interface IBookService
 {
     public IEnumerable<Book> GetAllBooks();
 }

@@ -4,7 +4,7 @@ using Library_API.Services.Interfaces;
 
 namespace Library_API.Services;
 
-public class BooksService : IBooksService
+public class BooksService : IBookService
 {
     private readonly ApplicationDbContext _dbContext;
 

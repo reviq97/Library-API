@@ -9,9 +9,9 @@ namespace Library_API.Controllers
     [Route("[controller]")]
     public class BookController : Controller
     {
-        private readonly IBooksService _booksService;
+        private readonly IBookService _booksService;
 
-        public BookController(IBooksService booksService)
+        public BookController(IBookService booksService)
         {
             _booksService = booksService;
         }
