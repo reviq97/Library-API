@@ -2,7 +2,7 @@
 using Library_API.Entity;
 using Library_API.Services.Interfaces;
 
-namespace Library_API.Service;
+namespace Library_API.Services;
 
 public class BooksService : IBooksService
 {
