@@ -22,9 +22,7 @@ namespace Library_API.Controllers
 
         public ActionResult<IEnumerable<Customer>> GetAllCustomers()
         {
-            var allCustomers = _customerService.GetAllCustomers();
-
-            if(allCustomers)
+            return Ok(_customerService.GetAllCustomers());
 
         }
     }
