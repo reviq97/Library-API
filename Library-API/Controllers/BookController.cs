@@ -7,11 +7,11 @@ namespace Library_API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class LibraryController : Controller
+    public class BookController : Controller
     {
         private readonly IBooksService _booksService;
 
-        public LibraryController(IBooksService booksService)
+        public BookController(IBooksService booksService)
         {
             _booksService = booksService;
         }
