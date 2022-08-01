@@ -1,6 +1,6 @@
 ﻿using Library_API.Database;
 using Library_API.Entity;
-using Library_API.Service.Interfaces;
+using Library_API.Services.Interfaces;
 
 namespace Library_API.Service;
 

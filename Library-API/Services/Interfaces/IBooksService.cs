@@ -1,6 +1,6 @@
 ﻿using Library_API.Entity;
 
-namespace Library_API.Service.Interfaces;
+namespace Library_API.Services.Interfaces;
 
 public interface IBooksService
 {
