@@ -1,4 +1,5 @@
 ﻿using Library_API.Entity;
+using Library_API.Models;
 using Library_API.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,9 +27,9 @@ namespace Library_API.Controllers
 
         }
 
-        public ActionResult<Customer> CreateCustomer([FromBody] Customer)
+        public ActionResult<Customer> CreateCustomer([FromBody] CustomerAndAddressDto)
         {
-
+            _customerService.CreateCustomer();
         }
     }
 }

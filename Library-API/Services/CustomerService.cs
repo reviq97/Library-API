@@ -8,9 +8,14 @@ namespace Library_API.Services
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public CustomerService(ApplicationDbContext applicationDbContext)
+        public CustomerService(ApplicationDbContext dbContext)
         {
-            _dbContext = applicationDbContext;
+            _dbContext = dbContext;
+        }
+
+        public void CreateCustomer()
+        {
+            
         }
 
         public IEnumerable<Customer> GetAllCustomers()
