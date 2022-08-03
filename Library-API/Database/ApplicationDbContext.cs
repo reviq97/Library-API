@@ -11,7 +11,6 @@ namespace Library_API.Database
         }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Book> Book { get; set; }
-        public DbSet<Address> Address { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -24,9 +23,6 @@ namespace Library_API.Database
                 .Property(x => x.Title)
                 .IsRequired();
 
-            modelBuilder.Entity<Address>()
-                .Property(x => x.Street)
-                .IsRequired();
         }
 
     }

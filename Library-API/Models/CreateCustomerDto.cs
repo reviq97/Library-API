@@ -1,12 +1,12 @@
-﻿using Library_API.Enums;
+﻿using Library_API.Entity;
+using Library_API.Enums;
 
-namespace Library_API.Entity
+namespace Library_API.Models
 {
-    public class Customer
+    public class CreateCustomerDto
     {
-        public string? Id { get; set; }
         public string Name { get; set; }
-        public string Surname {get; set; }
+        public string Surname { get; set; }
         public Gender Gender { get; set; }
         public DateTime Birth { get; set; }
         public string PhoneNumber { get; set; }
@@ -14,6 +14,5 @@ namespace Library_API.Entity
         public string City { get; set; }
         public string Region { get; set; }
         public string PostalCode { get; set; }
-
     }
 }

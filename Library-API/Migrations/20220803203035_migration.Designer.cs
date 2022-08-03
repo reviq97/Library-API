@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library_API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220731223713_dbmigration01082022")]
-    partial class dbmigration01082022
+    [Migration("20220803203035_migration")]
+    partial class migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,38 +23,6 @@ namespace Library_API.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("Library_API.Entity.Address", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("CustomerId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("PostalCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Region")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Street")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Address");
-                });
 
             modelBuilder.Entity("Library_API.Entity.Book", b =>
                 {
@@ -81,20 +49,15 @@ namespace Library_API.Migrations
 
             modelBuilder.Entity("Library_API.Entity.Customer", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
-
-                    b.Property<long>("AddressId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("AddressId1")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("Birth")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");
@@ -108,26 +71,25 @@ namespace Library_API.Migrations
                         .HasMaxLength(12)
                         .HasColumnType("nvarchar(12)");
 
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Region")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId1");
-
                     b.ToTable("Customers");
-                });
-
-            modelBuilder.Entity("Library_API.Entity.Customer", b =>
-                {
-                    b.HasOne("Library_API.Entity.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Address");
                 });
 #pragma warning restore 612, 618
         }

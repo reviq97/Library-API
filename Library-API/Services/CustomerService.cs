@@ -1,4 +1,5 @@
-﻿using Library_API.Database;
+﻿using AutoMapper;
+using Library_API.Database;
 using Library_API.Entity;
 using Library_API.Models;
 using Library_API.Service.Interfaces;
@@ -14,24 +15,25 @@ namespace Library_API.Services
             _dbContext = dbContext;
         }
 
-        public void CreateCustomer(CustomerAndAddressDto dto)
+        public void CreateCustomer(Customer dto)
         {
-            if(dto is not null)
+            var customerGuid = Guid.NewGuid().ToString();
+            var newCustomer = new Customer
             {
-                var customer = new Customer()
-                {
-                    Id = dto.Customer.Id,
-                    Name = dto.Customer.Name,
-                    Surname = dto.Customer.Surname,
-                    Birth = dto.Customer.Birth,
-                    Gender = dto.Customer.Gender,
-                    PhoneNumber = dto.Customer.PhoneNumber,
-                };
+                Id = customerGuid,
+                Name = dto.Name,
+                Surname = dto.Surname,
+                Gender = dto.Gender,
+                Birth = Convert.ToDateTime(dto.Birth.ToString("dd/MM/yyyy")),
+                City = dto.City,
+                PhoneNumber = dto.PhoneNumber,
+                PostalCode = dto.PostalCode,
+                Region = dto.Region,
+                Street = dto.Street
+            };
 
-                var address = new Address()
-                {
-                };
-            }
+            _dbContext.Customers.Add(newCustomer);
+            _dbContext.SaveChanges();
         }
 
         public IEnumerable<Customer> GetAllCustomers()

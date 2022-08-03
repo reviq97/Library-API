@@ -1,4 +1,5 @@
 using Library_API.Database;
+using Library_API.Service.Interfaces;
 using Library_API.Services;
 using Library_API.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MyConnection"));
 });
 builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();

@@ -16,20 +16,19 @@ namespace Library_API.Controllers
             _customerService = customerService;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        
 
+        [HttpGet("[action]")]
         public ActionResult<IEnumerable<Customer>> GetAllCustomers()
         {
             return Ok(_customerService.GetAllCustomers());
 
         }
 
-        public ActionResult<Customer> CreateCustomer([FromBody] CustomerAndAddressDto dto)
+        [HttpPost("[action]")]
+        public ActionResult<Customer> CreateCustomer([FromBody] Customer customer)
         {
-            _customerService.CreateCustomer(dto);
+            _customerService.CreateCustomer(customer);
 
             return Ok();
         }

@@ -7,9 +7,6 @@
         public string? Author { get; set; }
         public DateTime? Written { get; set; }
 
-        public Book()
-        {
-
-        }
+       
     }
 }
