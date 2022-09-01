@@ -19,7 +19,7 @@ namespace Library_API.Controllers
         
 
         [HttpGet("[action]")]
-        public ActionResult<IEnumerable<Customer>> GetAllCustomers()
+        public ActionResult<List<Customer>> GetAllCustomers()
         {
             return Ok(_customerService.GetAllCustomers());
 

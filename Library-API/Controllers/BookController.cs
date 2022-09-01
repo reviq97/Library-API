@@ -1,4 +1,5 @@
 ﻿using Library_API.Entity;
+using Library_API.Models;
 using Library_API.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,18 +19,29 @@ namespace Library_API.Controllers
         
         [HttpGet]
         [Route("[action]")]
-        public ActionResult<IEnumerable<Book>> GetAllBooks()
+        public ActionResult<List<Book>> GetAllBooks()
         {
             var booksList = _booksService.GetAllBooks();
 
-            if (!booksList.Any())
+            var enumerable = booksList.ToList();
+            if (!enumerable.Any())
             {
                 return NotFound();
             }
 
-            return Ok(booksList.ToList());
+            return Ok(enumerable.ToList());
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public ActionResult<int> AddNewBook([FromBody] AddBookDto book)
+        {
+            _booksService.AddNewBook(book);
+
+            return 1;
         }
 
 
     }
+    
 }

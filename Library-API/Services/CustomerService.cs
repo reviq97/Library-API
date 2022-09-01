@@ -38,7 +38,6 @@ namespace Library_API.Services
 
         public IEnumerable<Customer> GetAllCustomers()
         {
-           
             return _dbContext.Customers.ToList();
         }
     }
