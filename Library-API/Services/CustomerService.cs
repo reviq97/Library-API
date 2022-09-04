@@ -69,5 +69,21 @@ namespace Library_API.Services
 
             return true;
         }
+
+        // For clarity of code, i wont change code duplicate like _dbContext.Book.FirstOrDefault. For me it's much clearer
+        public Customer PatchCustomer(Customer customerToPatch)
+        {
+            var customer = _dbContext.Customers.FirstOrDefault(x => x.Id == customerToPatch.Id);
+
+            if (customer is null)
+            {
+                throw new Exception("Book not found");
+            }
+
+            _dbContext.Customers.Update(customer);
+            _dbContext.SaveChanges();
+
+            return customer;
+        }
     }
 }

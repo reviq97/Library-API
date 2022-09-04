@@ -47,5 +47,13 @@ namespace Library_API.Controllers
 
             return NoContent();
         }
+
+        [HttpPatch]
+        public ActionResult<Customer> PatchCustomer([FromBody] Customer customerToPatch)
+        {
+            var customer = _customerService.PatchCustomer(customerToPatch);
+
+            return Created($"api/customer/{customerToPatch.Id}", customerToPatch);
+        }
     }
 }

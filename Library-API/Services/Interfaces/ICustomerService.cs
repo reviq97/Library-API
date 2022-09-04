@@ -9,5 +9,6 @@ namespace Library_API.Service.Interfaces
         string CreateCustomer(CreateCustomerDto dto);
         Customer GetCustomer(string guid);
         bool DeleteCustomer(string guid);
+        Customer PatchCustomer(Customer customerToPatch);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Library_API.Entity;
+﻿using Library_API.Entities;
+using Library_API.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Library_API.Database
@@ -10,10 +11,15 @@ namespace Library_API.Database
 
         }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<Book> Book { get; set; }
+        public DbSet<Book> Book { get; set; } 
+        public DbSet<Role> Roles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Role>()
+                .Property(x => x.Name)
+                .IsRequired();
+
             modelBuilder.Entity<Customer>()
                 .Property(x => x.PhoneNumber)
                 .IsRequired()
