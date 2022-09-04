@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Library_API.Controllers
 {
+    [Route("/api/book")]
     [ApiController]
-    [Route("[controller]")]
     public class BookController : Controller
     {
         private readonly IBookService _booksService;
@@ -18,7 +18,6 @@ namespace Library_API.Controllers
         }
         
         [HttpGet]
-        [Route("[action]")]
         public ActionResult<List<Book>> GetAllBooks()
         {
             var booksList = _booksService.GetAllBooks();
@@ -32,13 +31,38 @@ namespace Library_API.Controllers
             return Ok(enumerable.ToList());
         }
 
-        [HttpPost]
-        [Route("[action]")]
-        public ActionResult<int> AddNewBook([FromBody] AddBookDto book)
+        [HttpGet]
+        [Route("{id}")]
+        public ActionResult<Book> GetBook([FromRoute] string id)
         {
-            _booksService.AddNewBook(book);
+            var book = _booksService.GetBook(id);
 
-            return 1;
+            return Ok(book);
+        }
+
+        [HttpPost]
+        public ActionResult<string> AddNewBook([FromBody] AddBookDto book)
+        {
+            var bookId = _booksService.AddNewBook(book);
+
+
+            return Created($"api/book/{bookId}", null);
+        }
+
+        [HttpDelete]
+        public ActionResult DeleteBook([FromRoute] string guid)
+        {
+            var book = _booksService.RemoveBook(guid);
+
+            return NoContent();
+        }
+
+        [HttpPatch]
+        public ActionResult<Book> PatchBook([FromBody] Book bookToPatch)
+        {
+            var book = _booksService.PatchBook(bookToPatch);
+
+            return Created($"api/book/{book.Id}", book);
         }
 
 

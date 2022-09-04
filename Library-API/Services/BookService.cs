@@ -24,7 +24,7 @@ public class BookService : IBookService
         return Enumerable.Empty<Book>();
     }
 
-    public int AddNewBook(AddBookDto bookDto)
+    public string AddNewBook(AddBookDto bookDto)
     {
         var findBook = _dbContext.Book.FirstOrDefault(x => x.Author == bookDto.Author && x.Title == bookDto.Author);
 
@@ -33,8 +33,51 @@ public class BookService : IBookService
             throw new Exception("Book already exist");
         }
 
-        var book = new Book();
+        var book = new Book()
+        {
+            Id = Guid.NewGuid().ToString(),
+            Author = bookDto.Author,
+            Title = bookDto.Title,
+            Written = bookDto.Written,
+        };
 
-        return 1;
+        _dbContext.Book.Add(book);
+        _dbContext.SaveChanges();
+
+        return book.Id;
+    }
+
+    public Book GetBook(string guid)
+    {
+        var book = _dbContext.Book.FirstOrDefault(x => x.Id == guid);
+        if (book is null)
+        {
+            throw new Exception("Book not found");
+        }
+
+        return book;
+    }
+
+    public bool RemoveBook(string guid)
+    {
+        var book = GetBook(guid);
+
+        return true;
+    }
+
+    // For clarity of code, i wont change code duplicate like _dbContext.Book.FirstOrDefault. For me it's much clearer
+    public Book PatchBook(Book bookToPatch)
+    {
+        var book = _dbContext.Book.FirstOrDefault(x => x.Id == bookToPatch.Id);
+
+        if (book is null)
+        {
+            throw new Exception("Book not found");
+        }
+
+        _dbContext.Book.Update(book);
+        _dbContext.SaveChanges();
+
+        return book;
     }
 }

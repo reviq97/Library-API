@@ -15,7 +15,7 @@ namespace Library_API.Services
             _dbContext = dbContext;
         }
 
-        public void CreateCustomer(Customer dto)
+        public string CreateCustomer(CreateCustomerDto dto)
         {
             var customerGuid = Guid.NewGuid().ToString();
             var newCustomer = new Customer
@@ -34,11 +34,40 @@ namespace Library_API.Services
 
             _dbContext.Customers.Add(newCustomer);
             _dbContext.SaveChanges();
+
+            return newCustomer.Id;
+        }
+        
+        public Customer GetCustomer(string guid)
+        {
+            var customer = _dbContext.Customers.FirstOrDefault(x => x.Id == guid);
+
+            if(customer is null)
+            {
+                throw new Exception("Customer not found");
+            }
+
+            return customer;
         }
 
-        public IEnumerable<Customer> GetAllCustomers()
+        public List<Customer> GetAllCustomers()
         {
             return _dbContext.Customers.ToList();
+        }
+
+        public bool DeleteCustomer(string guid)
+        {
+            var customer =_dbContext.Customers.FirstOrDefault(x => x.Id == guid);
+
+            if(customer is null)
+            {
+                throw new Exception("Customer not found");
+            }
+
+            _dbContext.Customers.Remove(customer);
+            _dbContext.SaveChanges();
+
+            return true;
         }
     }
 }

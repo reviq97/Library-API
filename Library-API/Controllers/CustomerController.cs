@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Library_API.Controllers
 {
+    [Route("api/customer/")]
     [ApiController]
-    [Route("[controller]")]
     public class CustomerController : Controller
     {
         private readonly ICustomerService _customerService;
@@ -16,21 +16,36 @@ namespace Library_API.Controllers
             _customerService = customerService;
         }
 
-        
+        [HttpGet]
+        [Route("{guid}")]
+        public ActionResult<Customer> GetCustomer([FromRoute] string guid)
+        {
+            var customer = _customerService.GetCustomer(guid);
 
-        [HttpGet("[action]")]
+            return Ok(customer);
+        }
+
+        [HttpGet]
         public ActionResult<List<Customer>> GetAllCustomers()
         {
             return Ok(_customerService.GetAllCustomers());
 
         }
 
-        [HttpPost("[action]")]
-        public ActionResult<Customer> CreateCustomer([FromBody] Customer customer)
+        [HttpPost]
+        public ActionResult<Customer> CreateCustomer([FromBody] CreateCustomerDto customer)
         {
-            _customerService.CreateCustomer(customer);
+            var customerId = _customerService.CreateCustomer(customer);
 
-            return Ok();
+            return Created($"api/customer/{customerId}", null);
+        }
+
+        [HttpDelete]        
+        public ActionResult<Customer> DeleteCustomer([FromRoute] string guid)
+        {
+            var customer = _customerService.DeleteCustomer(guid);
+
+            return NoContent();
         }
     }
 }

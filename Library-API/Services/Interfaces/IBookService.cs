@@ -6,5 +6,8 @@ namespace Library_API.Services.Interfaces;
 public interface IBookService
 {
     public IEnumerable<Book> GetAllBooks();
-    int AddNewBook(AddBookDto book);
+    string AddNewBook(AddBookDto book);
+    Book GetBook(string guid);
+    bool RemoveBook(string guid);
+    Book PatchBook(Book book);
 }
