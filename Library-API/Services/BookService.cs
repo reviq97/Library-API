@@ -44,7 +44,7 @@ public class BookService : IBookService
         _dbContext.Book.Add(book);
         _dbContext.SaveChanges();
 
-        return book.Id;
+        return book.Id.ToString();
     }
 
     public Book GetBook(string guid)
@@ -62,7 +62,14 @@ public class BookService : IBookService
     {
         var book = GetBook(guid);
 
-        return true;
+        if(book is not null)
+        {
+            _dbContext.Book.Remove(book);
+            _dbContext.SaveChanges();
+            return true;
+        }
+
+        return false;
     }
 
     // For clarity of code, i wont change code duplicate like _dbContext.Book.FirstOrDefault. For me it's much clearer

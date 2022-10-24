@@ -13,9 +13,14 @@ namespace Library_API.Database
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Book> Book { get; set; } 
         public DbSet<Role> Roles { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>()
+                .Property(x => x.Email)
+                .IsRequired();
+
             modelBuilder.Entity<Role>()
                 .Property(x => x.Name)
                 .IsRequired();

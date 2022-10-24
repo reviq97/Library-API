@@ -1,6 +1,7 @@
 ﻿using Library_API.Entity;
 using Library_API.Models;
 using Library_API.Service.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library_API.Controllers
